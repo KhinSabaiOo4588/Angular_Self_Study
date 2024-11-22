@@ -1,0 +1,59 @@
+<div class="ui grid">
+
+    <div class="four wide column" style="margin-top: 40px;">
+        <img class="ui fluid image" src="/assets/images/Digizenger.png" alt="">
+    </div>
+
+    <form [formGroup]="studentForm" (ngSubmit)="save()" class="ui form eight wide column">
+      <h1>{{ isEditMode ? 'Edit' : 'Add' }} Member</h1>  
+      <!-- Name Field -->
+      <div class="field" [class.error]="isControlInvalid('name')">
+        <label>Name</label>
+        <input type="text" formControlName="name" placeholder="Enter name" />
+        <div *ngIf="isControlInvalid('name')" class="ui pointing red basic label">
+          Name is required and must be at least 3 characters long.
+        </div>
+      </div>
+  
+      <!-- Phone Field -->
+      <div class="field" [class.error]="isControlInvalid('phone')">
+        <label>Phone</label>
+        <input type="text" formControlName="phone" placeholder="Enter phone" />
+        <div *ngIf="isControlInvalid('phone')" class="ui pointing red basic label">
+          Phone is required and must be a valid 10-digit number.
+        </div>
+      </div>
+  
+      <!-- Email Field -->
+      <div class="field" [class.error]="isControlInvalid('email')">
+        <label>Email</label>
+        <input type="email" formControlName="email" placeholder="Enter email" />
+        <div *ngIf="isControlInvalid('email')" class="ui pointing red basic label">
+          A valid email address is required.
+        </div>
+      </div>
+  
+      <!-- Address Field -->
+      <div class="field" [class.error]="isControlInvalid('address')">
+        <label>Address</label>
+        <textarea
+          formControlName="address"
+          placeholder="Enter address"
+          cols="30" rows="5"
+        ></textarea>
+        <div *ngIf="isControlInvalid('address')" class="ui pointing red basic label">
+          Address is required and cannot exceed 120 characters.
+        </div>
+      </div>
+  
+      <!-- Buttons -->
+      <button type="submit" class="ui button primary" [disabled]="studentForm.invalid">
+        Save
+      </button>
+      <button type="button" class="ui button" (click)="router.navigateByUrl('/list')">
+        Cancel
+      </button>
+      
+    </form>
+  </div>
+  

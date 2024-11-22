@@ -1,0 +1,30 @@
+<h1>{{title}}</h1>
+
+<ul>
+  <li *ngFor="let item of language">
+    {{item}}
+  </li>
+</ul>
+
+<app-hello></app-hello>
+
+<app-extension></app-extension>
+
+<h1>{{divider}}</h1>
+<h1>************************************************</h1>
+
+<nav class="ui inverted blue menu">
+  <a class="item" [routerLink]="['/']">
+    <i class="icon home"></i> Home
+  </a>
+
+  <a class="item" [routerLink]="['/list']">
+    <i class="icon users"></i> Member List
+  </a>
+
+  <a class="item" [routerLink]="['/edit']">
+    <i class="icon plus"></i> Add Member
+  </a>
+</nav>
+
+<router-outlet></router-outlet>
