@@ -1,0 +1,58 @@
+<div class="card">
+    <div class="card-header">Key Event</div>
+    <div class="card-body row">
+        <div class="col">
+            <input 
+                type="text"
+                placeholder="Enter Message"
+                (keyup)="onKeyup($event)"
+                class="form-control"
+            >
+        </div>
+        <div class="col">
+            <span>{{ message }}</span>
+        </div>
+        <div class="col">
+            <span>{{ 'This is ' + message }}</span>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-4">
+    <div class="card-header">Change Event</div>
+    <div class="card-body card-row">
+        <div class="col">
+            <select #select (change)="changeOuptut.innerText = select.value" name="" id="" class="form-control">
+                <option value="">Select One</option>
+                <option value="Javascript">Javascript</option>
+                <option value="Typescript">Typescript</option>
+                <option value="Angular">Angular</option>
+            </select>
+        </div>
+        <div class="col"><span #changeOuptut></span></div>
+    </div>
+</div>
+
+<div class="card mt-3">
+    <div class="card-header">Key Event</div>
+    <div class="card-body">
+        <div class="col">
+            <input type="text" placeholder="Enter Name"
+            #input
+            (keyup)="value.innerText = input.value">
+        </div>
+        <div><span #value></span></div>
+    </div>
+</div>
+
+<div class="card mt-3">
+    <div class="card-header">Choose One</div>
+    <div class="card-body">
+        <select name="" id="" (change)="selectValue.innerText = select.value ">
+            <option value="">Select Me</option>
+            <option value="Love">Love</option>
+            <option value="Love More">Love More</option>
+        </select>
+    </div>
+    <div #selectValue></div>
+</div>

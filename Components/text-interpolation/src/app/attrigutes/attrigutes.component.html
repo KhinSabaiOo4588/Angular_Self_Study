@@ -1,0 +1,20 @@
+<h3>Attribute Binding</h3>
+<table class="table">
+    <tr>
+        <th>One</th>
+        <th>Two</th>
+        <th>Three</th>
+    </tr>
+    <tr>
+        <td>One</td>
+        <td [attr.colspan]="two">Col Span Two</td>
+    </tr>
+    <tr>
+        <td [attr.colspan]="two">Col Span Two</td>
+        <td [attr.rowspan]="two">Row Span Two</td> 
+    </tr>
+    <tr>
+        <td>New Row</td>
+        <td>Row Content</td> 
+    </tr>
+</table>

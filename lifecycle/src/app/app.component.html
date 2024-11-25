@@ -1,0 +1,35 @@
+
+<div class="container pt-4">
+  <h1>Component Lifecycle</h1>
+  <div class="form-inline mt-4">
+    <button (click)="0" class="btn btn-primary mb-4">Press Button</button>
+    <input #message type="text" placeholder="Enter Message" class="form-control mb-2">
+    <button (click)="setMessage(message)" class="btn btn-secondary">Add Message</button>
+  </div>
+  <div class="row mt-4">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">Simple String</div>
+        <div class="card-body">
+          <simple-string [message]="simpleString"></simple-string>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-header">Object Value</div>
+        <div class="card-body">
+          <object-value [message]="objectValue"></object-value>
+        </div>
+      </div>   
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-header">String Array</div>
+        <div class="card-body">
+          <array-value [list]="arrayValue"></array-value>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<h3 class="mt-4">DOM Properties</h3>
+
+<!-- Button with disabled property -->
+<button [disabled]="status" class="btn btn-primary mb-3">Sample</button>
+
+<!-- Improved Table -->
+<table class="table table-bordered table-striped table-hover mt-4">
+  <thead class="table-dark">
+    <tr>
+      <th>Column 1</th>
+      <th>Column 2</th>
+      <th>Column 3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <!-- Using rowSpan property -->
+      <td [rowSpan]="2" class="align-middle text-center">
+        One<br>
+        <span class="small text-muted">Using rowSpan Property</span>
+      </td>
+      <td>Two</td>
+      <td>Three</td>
+    </tr>
+    <tr>
+      <!-- Using colSpan property -->
+      <td [colSpan]="2" class="text-center">
+        <strong>Using colSpan Property</strong>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 class="mt-4 mb-4">Component Properties</h3>
+
+<!-- User Widget -->
+<app-user-widget [data]="aung" [title]="title"></app-user-widget>
+
+<h3 class="mt-4 mb-4">Directive Property</h3>
+<div>
+    <button (click)="viewCode = 1" class="btn btn-primary mx-2">View 1</button>
+    <button (click)="viewCode = 2" class="btn btn-success mx-2">View 2</button>
+    <button (click)="viewCode = 3" class="btn btn-info">View 3</button>
+</div>
+
+<div class="mt-4" [ngSwitch]="viewCode">
+    <div style="height: 100px;" *ngSwitchCase="1" class="bg-primary"></div>
+    <div style="height: 100px;" *ngSwitchCase="2" class="bg-success"></div>
+    <div style="height: 100px;" *ngSwitchDefault class="bg-info"></div>
+</div>

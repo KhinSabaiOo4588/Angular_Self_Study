@@ -1,0 +1,59 @@
+<h3 class="mb-4">Without Two-Way Data Binding</h3>
+<div class="card">
+    <div class="card-header bg-primary text-white">Without Two-Way Binding</div>
+    <div class="card-body row">
+        <!-- Parent Input Section -->
+        <div class="col-md-6 mb-3">
+            <div class="form-group">
+                <label for="parentInput">Parent Input</label>
+                <input
+                    id="parentInput"
+                    #input
+                    type="text"
+                    (keyup)="message = input.value"
+                    class="form-control"
+                    placeholder="Enter something..."
+                />
+            </div>
+            <div class="form-group">
+                <label for="">Message</label>
+                <span class="form-control">{{message}}</span>
+            </div>
+        </div>
+
+        <!-- Child Component Section -->
+        <div class="col-md-6">
+            <app-my-input [value]="message" (valueChange)="message = $event"></app-my-input>
+        </div>
+    </div>
+</div>
+
+<h3 class="mb-4">With Two-Way Data Binding</h3>
+<div class="card">
+    <div class="card-header bg-primary text-white">With Two-Way Binding</div>
+    <div class="card-body row">
+        <!-- Parent Input Section -->
+        <div class="col-md-6 mb-3">
+            <div class="form-group">
+                <label for="parentInput">Parent Input</label>
+                <input
+                    id="parentInput"
+                    #input2
+                    type="text"
+                    (keyup)="message = input2.value"
+                    class="form-control"
+                    placeholder="Enter something..."
+                />
+            </div>
+            <div class="form-group">
+                <label for="">Message</label>
+                <span class="form-control">{{message}}</span>
+            </div>
+        </div>
+
+        <!-- Child Component Section -->
+        <div class="col-md-6">
+            <app-my-input [(value)]="message"></app-my-input>
+        </div>
+    </div>
+</div>

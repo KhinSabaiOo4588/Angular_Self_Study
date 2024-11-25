@@ -1,0 +1,18 @@
+<div class="container pt-5">
+  <!-- Title -->
+  <h1 class="text-center mb-4 display-4">{{ title }}</h1>
+
+  <!-- Button and Count Section -->
+  <div class="d-flex justify-content-center align-items-center gap-4">
+    <!-- Count Down Button -->
+    <button (click)="countDown()" class="btn btn-danger btn-lg">Count Down</button>
+    
+    <!-- Count Display -->
+    <span class="fs-3 fw-bold px-4 border border-primary rounded-pill bg-light text-primary">
+     {{ count}}
+    </span>
+    
+    <!-- Count Up Button -->
+    <button (click)="countUp()"  class="btn btn-success btn-lg">Count Up</button>
+  </div>
+</div>

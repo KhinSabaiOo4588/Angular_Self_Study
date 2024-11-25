@@ -1,0 +1,17 @@
+<h3>Style Binding</h3>
+
+<input 
+class="mb-5"
+  #range 
+  (input)="changeRange(range.value)" 
+  type="range" 
+  min="0" 
+  max="600" 
+  style="width: 600px;">
+<span>{{ value }}</span>
+
+<div 
+[ngStyle]="targetStyle"
+[style.width.px]="value"
+>
+</div>

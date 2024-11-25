@@ -1,0 +1,9 @@
+<div class="form-group">
+    <label for="">My Input</label>
+    <input 
+      type="text"
+      #input
+      (keyup)="valueChange.emit(input.value)"  
+      [value]="value" class="form-control">  
+  </div>
+  
