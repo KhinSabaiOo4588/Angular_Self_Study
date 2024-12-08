@@ -1,0 +1,66 @@
+<div class="create-project-form">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-card">
+        <div class="form-section-title">Login User Details</div>
+        <div class="form-image text-center">
+          <div>
+            <!-- <img [src]="employee.profileImage" alt="Profile Image" class="profile-image mb-1"> -->
+            <img [src]="isProfileImageEmpty() ? defaultImageUrl : employee.profileImage" alt="Profile Image"
+              class="profile-image" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-card">
+            <div class="form-group">
+              <label>Name</label>
+              <p>{{ employee.name }}</p>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <p>{{ employee.email }}</p>
+            </div>
+            <div class="form-group">
+              <label>Gender</label>
+              <p>{{ employee.gender }}</p>
+            </div>
+            <div class="form-group">
+              <label>Gender</label>
+              <p>{{ employee.education }}</p>
+            </div>
+            <div class="form-group">
+              <label>Date of Birth</label>
+              <p>{{ employee.dob }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-card">
+            <div class="form-group">
+              <label>Job Position</label>
+              <p>{{ employee.jobPosition }}</p>
+            </div>
+            <div class="form-group">
+              <label>Address</label>
+              <p>{{ employee.address }}</p>
+            </div>            
+            <div class="form-group">
+              <label>Work Phone</label>
+              <p>{{ employee.workPhone }}</p>
+            </div>
+            <div class="form-group">
+              <label>Mobile</label>
+              <p>{{ employee.workMobile }}</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

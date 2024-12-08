@@ -1,0 +1,110 @@
+/*  By Thin Thin Oo 26/6/2024, For Attendance   --> */
+/* .record {
+    overflow: hidden;
+  }
+   */
+  :root {
+    font-size: 14px;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .department-item h5 {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .department-item ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .department-item li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .employee-info {
+    font-size: 0.875rem;
+    color: #666;
+  }
+  
+  .custom-table {
+    width: 100%;
+    margin: 10px auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .custom-table thead th {
+    background: #e0efe9;
+    padding: 1rem;
+    font-size: 1rem;
+    text-align: center;
+  }
+  
+  .custom-table tbody tr {
+    background: #fff;
+    border-radius: 0.25rem;
+  }
+  
+  .custom-table tbody td {
+    padding: 0.8rem;
+    font-size: 0.875rem;
+    text-align: center;
+  }
+  
+  .custom-table tbody tr:hover {
+    background-color: #e0efe9;
+  }
+  
+  .form-control,
+  .input-group-text {
+    font-size: 1rem;
+  }
+  
+  .btn {
+    font-size: 1rem;
+  }
+  
+  .add-department-btn {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .department-item h5 {
+      font-size: 1rem;
+    }
+  
+    .custom-table thead th {
+      padding: 0.75rem;
+    }
+  
+    .custom-table tbody td {
+      padding: 0.6rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .department-item h5 {
+      font-size: 0.875rem;
+    }
+  
+    .custom-table thead th {
+      padding: 0.5rem;
+    }
+  
+    .custom-table tbody td {
+      padding: 0.5rem;
+    }
+  }
+  

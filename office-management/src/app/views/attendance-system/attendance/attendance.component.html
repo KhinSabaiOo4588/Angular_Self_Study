@@ -1,0 +1,58 @@
+<!-- // // By Thin Thin Oo 26/6/2024, For Attendance   -->
+<div class="bg-white col-md-12 col-lg-12 px-md-4 mt-4 full-height">
+  <div class="check-in-bar">
+    <div class="d-flex">
+      <h3 class="text-left record" [class.underline]="viewStatus == 'att-view'"
+        [class.active]="viewStatus == 'att-view'" (click)="viewAttendance('att-view')">
+        Check-In / Check-Out
+      </h3>
+      <h3 class="tab mx-4 text-left" [class.active]="viewStatus == 'att-rec'"
+        [class.underline]="viewStatus == 'att-rec'" (click)="viewAttendance('att-rec')">
+        Attendances
+      </h3>
+    </div>
+  </div>
+  <div
+    class="form-card card d-flex bg-white justify-content-between flex-wrap flex-md-nowrap rounded shadow pt-2 pb-2 mb-3 pe-2 border-bottom"
+    *ngIf="viewStatus == 'att-view'">
+    <div class="profile-img"></div>
+
+    <h2>Welcome! {{ userName }}</h2>
+
+    <div *ngIf="!isCheckedIn && !showCheckInGreeting && !showCheckOutButton; else checkInGreetingTemplate">
+      <p>Click the icon to <strong>check in</strong> and start your day.</p>
+      <i class="icon check-in" (click)="onCheckIn()"></i>
+    </div>
+
+    <ng-template #checkInGreetingTemplate>
+      <div *ngIf="showCheckInGreeting && !showCheckOutButton; else checkOutTemplate">
+        <p>Good to see you, {{ userName }}!</p>
+        <p>You checked in at: {{ checkInTime | date:'shortTime' }}</p>
+        <p>Click the icon to <strong>check out</strong> and end your day.</p>
+        <button type="text" class="btn btn-warning" (click)="onCheckInGreeting()">Welcome</button>
+
+      </div>
+    </ng-template>
+
+    <ng-template #checkOutTemplate>
+      <div *ngIf="showCheckOutButton && !isCheckedOut; else checkOutGreetingTemplate">
+        <p>Are you ready to check out?<br>
+          Click the icon to <strong>check out</strong> and end your day.</p>
+        <i class="icon check-out" (click)="onCheckOut()"></i>
+      </div>
+    </ng-template>
+
+    <ng-template #checkOutGreetingTemplate>
+      <div *ngIf="showCheckOutGreeting">
+        <p>We hope you had a productive day, {{ userName }}!</p>
+        <p>You checked out at: {{ checkOutInfo.checkOutTime | date:'shortTime' }}.</p>
+        <p>Today's work hours: {{ checkOutInfo.calculateAttendances }}</p>
+        <button type="text" class="btn btn-primary" (click)="onCheckOutGreeting()">Good Bye</button>
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="row full-height" *ngIf="viewStatus == 'att-rec'">
+    <app-attendance-record></app-attendance-record>
+  </div>
+</div>

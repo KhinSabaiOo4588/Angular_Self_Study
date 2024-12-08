@@ -1,0 +1,154 @@
+ <div class="update-project-form">
+  <form (ngSubmit)="updateProject()" #projectForm="ngForm">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-card">
+          <div class="form-section-title">{{ isEditMode ? 'Update Project Details' : 'Project Details' }}</div>
+          <div class="form-group">
+            <label for="projectName">Project Name <span class="text-star">{{ isEditMode ? '*' : '' }}</span></label>
+            <input type="text" class="form-control" id="projectName" [(ngModel)]="project.projectName" name="projectName"
+              [readonly]="!isEditMode" required #projectName="ngModel">
+            <div *ngIf="projectName.invalid && (projectName.dirty || projectName.touched)"
+              class="text-danger">
+              <div class="text-danger" *ngIf="projectName.errors?.['required']">Project Name is required.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="description">Description <span class="text-star">{{ isEditMode ? '*' : '' }}</span></label>
+            <textarea class="form-control" id="description" [(ngModel)]="project.description" name="description"
+              [readonly]="!isEditMode" required #description="ngModel"></textarea>
+            <div *ngIf="description.invalid && (description.dirty || description.touched)"
+              class="text-danger">
+              <div class="text-danger" *ngIf="description.errors?.['required']">Description is required.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="startDate">Start Date <span class="text-star">{{ isEditMode ? '*' : '' }}</span></label>
+            <input type="date" class="form-control" id="startDate" [(ngModel)]="project.startDate" name="startDate"
+              [readonly]="!isEditMode" required #startDate="ngModel">
+            <div *ngIf="startDate.invalid && (startDate.dirty || startDate.touched)"
+              class="text-danger">
+              <div class="text-danger" *ngIf="startDate.errors?.['required']">Start Date is required.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="endDate">End Date <span class="text-star">{{ isEditMode ? '*' : '' }}</span></label>
+            <input type="date" class="form-control" id="endDate" [(ngModel)]="project.endDate" name="endDate"
+              [readonly]="!isEditMode" required #endDate="ngModel">
+            <div *ngIf="endDate.invalid && (endDate.dirty || endDate.touched)"
+              class="text-danger">
+              <div class="text-danger" *ngIf="endDate.errors?.['required']">End Date is required.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="projectManager">Project Manager <span class="text-star">{{ isEditMode ? '*' : '' }}</span></label>
+            <select class="form-control" id="projectManager" [(ngModel)]="project.projectManager" name="projectManager"
+              [disabled]="!isEditMode" required #projectManager="ngModel">
+              <option value="">Select PM</option>
+              <option *ngFor="let e of projectManagers" [value]="e.name">{{ e.name }}</option>
+            </select>
+            <div *ngIf="projectManager.invalid && (projectManager.dirty || projectManager.touched)"
+              class="text-danger">
+              <div class="text-danger" *ngIf="projectManager.errors?.['required']">Project Manager is required.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="status">Status <span class="text-star">{{ isEditMode ? '*' : '' }}</span></label>
+            <select class="form-control" id="status" [(ngModel)]="project.status" name="status" [disabled]="!isEditMode"
+              required #status="ngModel">
+              <option value="Not Started">Not Started</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+              <option value="Overdue">Overdue</option>
+            </select>
+            <div *ngIf="status.invalid && (status.dirty || status.touched)"
+              class="text-danger">
+              <div class="text-danger" *ngIf="status.errors?.['required']">Status is required.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-card">
+          <div class="form-section-title">Assign Employees</div>
+          <div class="form-group">
+            <label for="assignmentDate">Assignment Date <span class="text-star">{{ isEditMode ? '*' : '' }}</span></label>
+            <input type="date" class="form-control" id="assignmentDate" [(ngModel)]="project.assignmentDate"
+              name="assignmentDate" [readonly]="!isEditMode" required #assignmentDate="ngModel">
+            <div *ngIf="assignmentDate.invalid && (assignmentDate.dirty || assignmentDate.touched)"
+              class="text-danger">
+              <div class="text-danger" *ngIf="assignmentDate.errors?.['required']">Assignment Date is required.</div>
+            </div>
+          </div>
+          <button *ngIf="isEditMode" type="button" class="btn btn-secondary add-employee-btn" (click)="openAddEmployeeModal()">
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="assigned-employees">
+            <div *ngFor="let employee of project.employees; let i = index" class="assigned-employee">
+              <span>{{ employee.name }} - {{ employee.jobPosition }}</span>
+              <button *ngIf="isEditMode" type="button" class="btn btn-link btn-sm remove-employee-btn"
+                (click)="removeEmployee(i)">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="form-card">
+          <div class="form-section-title">Project Progress</div>
+          <div class="form-group">
+            <label for="milestones">Milestones</label>
+            <textarea class="form-control" id="milestones" [(ngModel)]="project.milestones" name="milestones"
+              [readonly]="!isEditMode"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="progress">Progress (%)</label>
+            <input type="number" class="form-control" id="progress" [(ngModel)]="project.progress" name="progress"
+              [readonly]="!isEditMode">
+          </div>
+          <div class="form-group">
+            <label for="deadline">Deadline <span class="text-star">{{ isEditMode ? '*' : '' }}</span></label>
+            <input type="date" class="form-control" id="deadline" [(ngModel)]="project.deadline" name="deadline"
+              [readonly]="!isEditMode" required #deadline="ngModel">
+            <div *ngIf="deadline.invalid && (deadline.dirty || deadline.touched)"
+              class="text-danger">
+              <div class="text-danger" class="text-danger" *ngIf="deadline.errors?.['required']">Deadline is required.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button *ngIf="isEditMode" type="submit" class="btn btn-primary" [disabled] = "!projectForm.valid">Update Project</button>
+    <button *ngIf="!isEditMode" type="button" class="btn btn-primary" (click)="goToList()">OK</button>
+  </form>
+</div>
+
+<div class="modal" tabindex="-1" [class.show]="isModalOpen" [ngStyle]="{ 'display': isModalOpen ? 'block' : 'none' }">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Employee</h5>
+        <button type="button" class="close" (click)="closeAddEmployeeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="name">Employee Name <span class="text-star">{{ isEditMode ? '*' : '' }}</span></label>
+            <select id="name" class="form-control" [(ngModel)]="newEmployee.name" name="name" (change)="onEmployeeSelect($event)"
+              [disabled]="!isEditMode" required>
+              <option *ngFor="let employee of assignableEmployees" [value]="employee.name">{{ employee.name }}</option>
+            </select>       
+          </div>
+          <div class="form-group">
+            <label for="jobPosition">Job Position</label>
+            <input type="text" id="jobPosition" class="form-control" [(ngModel)]="newEmployee.jobPosition" name="jobPosition" readonly>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeAddEmployeeModal()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="addEmployee()" [disabled]="!isEditMode">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+

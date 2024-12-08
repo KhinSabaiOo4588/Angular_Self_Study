@@ -1,0 +1,63 @@
+.create-project-form {
+  margin-bottom: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-card {
+  padding: 10px;
+}
+
+.form-section-title {
+  margin-bottom: 20px;
+  font-size: 1.25em;
+  font-weight: bold;
+  border-bottom: 2px solid #54B9B8;
+  padding-bottom: 2px;
+}
+
+.form-image {
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+
+.bold-label {
+  font-weight: bold;
+  font-size: 1.25em;
+}
+
+.form-group {
+  margin-bottom: 10px;
+  background: #f7f7f7;
+  border-radius: 10px;
+  padding: 0.5px;
+}
+
+
+.form-group label {
+  margin-left: 10px;
+  display: block;
+  margin-bottom: 1px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.profile-image {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 2px solid #ccc;
+  margin-bottom: 10px;
+}
+
+p {
+  margin-left: 10px;
+}
+
+
+
+

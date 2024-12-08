@@ -1,0 +1,136 @@
+<!-- @HanNaungSoe booking list and  -->
+<div *ngIf="!bookingShow"
+    class="card d-flex bg-white justify-content-between flex-wrap flex-md-nowrap rounded shadow pt-2 pb-2 mb-3 pe-2 border-bottom">
+
+    <h4 class="p-3 ">Boodings List</h4>
+    <!-- Items Per Page Dropdown, Add Bookings Button, and Search Input -->
+    <div class="d-flex pr-3 justify-content-between align-items-center mb-3 flex-wrap">
+        <!-- Items Per Page Dropdown -->
+        <div class="d-flex align-items-center mb-2 mb-md-0">
+            <label for="itemsPerPage" class="mb-0 mr-3">Display</label>
+            <select id="itemsPerPage" class="form-control  form-control-sm custom-select-box mr-2"
+                (change)="onItemsPerPageChanged($event)">
+                <option *ngFor="let option of itemsPerPageOptions" [value]="option">{{ option }}</option>
+            </select>
+            <span>Bookings</span>
+        </div>
+
+        <!-- Add Bookings Button and Search Input -->
+        <div class="d-flex align-items-center mb-2 mb-md-0">
+            <!-- Add Bookings Button with Large Plus Icon -->
+
+            <button type="button" class="btn plus-btn text-dark btn-md rounded mr-2 " (click)="createBookings()">
+                <span class="material-symbols-outlined">
+                    add
+                </span>
+            </button>
+
+            <!-- Search Input with Lens Icon -->
+            <div class="input-group">
+
+                <input type="text" id="search" class="form-control form-control-md" placeholder="Search"
+                    (input)="onSearchQueryChanged($event)" aria-label="Search" aria-describedby="search-icon">
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <!-- Booking Table -->
+        <table class="table table-hover custom-table">
+            <thead class="table-header">
+                <tr>
+                    <th>Resource Name</th>
+                    <th>Employee Name</th>
+                    <th>Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let booking of paginatedItems">
+                    <td (click)="routeToDetails(booking)">{{ booking.resourceName }}</td>
+                    <td (click)="routeToDetails(booking)">{{ booking.name }}</td>
+                    <td (click)="routeToDetails(booking)">{{ booking.date }}</td>
+                    <td (click)="routeToDetails(booking)">{{formatTime(booking.startTime) }}</td>
+                    <td (click)="routeToDetails(booking)">{{ formatTime(booking.endTime) }}</td>
+
+                    <td>
+                        <i class="bi bi-pencil" (click)="updateBooking(booking.id)"></i>
+                        <!-- <i class="bi bi-trash text-danger" (click)="deleteBooking(booking.id)"></i> -->
+                        <i class="bi bi-trash bi-color"
+                            (click)="openDeleteModal(deleteConfirmationModal, booking.id)"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+    <!-- Pagination Component at the bottom -->
+    <app-pagination [totalItems]="bookings.length" [itemsPerPage]="itemsPerPage" [currentPage]="currentPage"
+        (pageChanged)="onPageChanged($event)">
+    </app-pagination>
+
+    <!-- delete-popup -->
+    <!-- Delete Confirmation Modal -->
+    <ng-template #deleteConfirmationModal let-modal>
+        <div class="modal-header">
+            <h5 class="modal-title">Delete Confirmation</h5>
+        </div>
+        <div class="modal-body">Are you sure you want to delete this?</div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="modal.dismiss('cancel click')">
+                Cancel
+            </button>
+            <button type="button" class="btn btn-danger" (click)="confirmDelete(); modal.close('Ok click')">
+                Delete
+            </button>
+        </div>
+    </ng-template>
+
+    <!-- end-delete-popup -->
+</div>
+
+
+
+
+
+<!-- View Detail for booking -->
+<div class="create-project-form" *ngIf="bookingShow">
+    <form class="create-form">
+        <div class="row justify-content-center">
+            <div class="col-md-6 justify-content-center">
+                <div class="form-card ">
+                    <div class="form-section-title">Resource Details</div>
+                    <div class="form-group">
+                        <label for="description">Resource Name</label>
+                        <input type="text" class="form-control" id="projectName" [value]="booking.resourceName"
+                            readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="startDate">Employee Name</label>
+                        <input type="text" class="form-control" id="projectName" [value]="booking.name"
+                            readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate">Date</label>
+                        <input type="date" class="form-control" id="projectName" [value]="booking.date" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate">Start Date</label>
+                        <input type="time" class="form-control" id="projectName" [value]="booking.startTime" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate">End Date</label>
+                        <input type="time" class="form-control" id="projectName" [value]="booking.endTime" readonly>
+                    </div>
+                    <button type="button" class="btn mt-3 btn-primary" (click)="backToBookings(!bookingShow)">Back To
+                        Booking</button>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,52 @@
+<!-- @HanNaungSoe update booking  -->
+<div class="create-project-form">
+    <form [formGroup]="bookingForm" class="create-form" (ngSubmit)="onSubmit()">
+        <div class="row justify-content-center">
+            <div class="col-md-6 justify-content-center">
+                <div class="form-card ">
+                    <div class="form-section-title">Resource Details</div>
+                    <div class="form-group">
+                        <label for="projectName">Resource Name</label>
+                        
+                        <!-- select resource name -->
+                        <select class="form-control form-select" formControlName="resourceId">
+                            <option value="">Select Resource</option>
+                            <option *ngFor="let t of resources" [value]="t.id">{{ t.resourceName }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Employee</label>
+                        <!-- employee -->
+                        <select class="form-control form-select" formControlName="empId">
+                            <option value="">Select Employee</option>
+                            <option *ngFor="let e of employees" [value]="e.id">{{ e.name }}</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" class="form-control" formControlName="date">
+                    </div>
+                    <div class="form-group">
+                        <label>Start Time</label>
+                        <input type="time" class="form-control" formControlName="startTime">
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate">Start Time</label>
+                        <input type="time" class="form-control" formControlName="endTime">
+                    </div>
+                   
+                    <div class="form-group d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary">
+                            Update Booking
+                        </button>
+                        <button type="button" (click)="goBack()" class="btn btn-primary">Cancel</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

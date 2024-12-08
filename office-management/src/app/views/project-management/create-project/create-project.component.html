@@ -1,0 +1,115 @@
+ <div class="create-project-form">
+  <form [formGroup]="projectForm" class="create-form">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-card">
+          <div class="form-section-title">Project Details</div>
+          <div class="form-group">
+            <label for="projectName">Project Name <span class="text-star">*</span></label>
+            <input type="text" class="form-control" id="projectName" formControlName="projectName">
+            <small *ngIf="projectForm.get('projectName')?.invalid && (projectForm.get('projectName')?.dirty || projectForm.get('projectName')?.touched)" class="text-danger">Project Name is required</small>
+          </div>
+          <div class="form-group">
+            <label for="description">Description <span class="text-star">*</span></label>
+            <textarea class="form-control" id="description" formControlName="description"></textarea>
+            <small *ngIf="projectForm.get('description')?.invalid && (projectForm.get('description')?.dirty || projectForm.get('description')?.touched)" class="text-danger">Description is required</small>
+          </div>
+          <div class="form-group">
+            <label for="startDate">Start Date <span class="text-star">*</span></label>
+            <input type="date" class="form-control" id="startDate" formControlName="startDate">
+            <small *ngIf="projectForm.get('startDate')?.invalid && (projectForm.get('startDate')?.dirty || projectForm.get('startDate')?.touched)" class="text-danger">Start Date is required</small>
+          </div>
+          <div class="form-group">
+            <label for="endDate">End Date <span class="text-star">*</span></label>
+            <input type="date" class="form-control" id="endDate" formControlName="endDate">
+            <small *ngIf="projectForm.get('endDate')?.invalid && (projectForm.get('endDate')?.dirty || projectForm.get('endDate')?.touched)" class="text-danger">End Date is required</small>
+          </div>
+          <div class="form-group">
+            <label for="projectManager">Project Manager <span class="text-star">*</span></label>
+            <select class="form-control" id="projectManager" formControlName="projectManager">
+              <option value="">Select PM</option>
+              <option *ngFor="let e of projectManagers" [value]="e.name">{{ e.name }}</option>
+            </select>
+            <small *ngIf="projectForm.get('projectManager')?.invalid && (projectForm.get('projectManager')?.dirty || projectForm.get('projectManager')?.touched)" class="text-danger">Project Manager is required</small>
+          </div>
+          <div class="form-group">
+            <label for="status">Status <span class="text-star">*</span></label>
+            <select class="form-control" id="status" formControlName="status">
+              <option value="Not Started">Not Started</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+              <option value="Overdue">Overdue</option>
+            </select>
+            <small *ngIf="projectForm.get('status')?.invalid && (projectForm.get('status')?.dirty || projectForm.get('status')?.touched)" class="text-danger">Status is required</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-card">
+          <div class="form-section-title">Assign Employees</div>
+          <div class="form-group">
+            <label for="assignmentDate">Assignment Date <span class="text-star">*</span></label>
+            <input type="date" class="form-control" id="assignmentDate" formControlName="assignmentDate">
+            <small *ngIf="projectForm.get('assignmentDate')?.invalid && (projectForm.get('assignmentDate')?.dirty || projectForm.get('assignmentDate')?.touched)" class="text-danger">Assignment Date is required</small>
+          </div>
+          <button type="button" class="btn btn-secondary add-employee-btn" (click)="openAddEmployeeModal()">
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="assigned-employees" formArrayName="employees">
+            <div *ngFor="let employee of employees.controls; let i = index" class="assigned-employee" [formGroupName]="i">
+              <span>{{ employee.get('name')?.value }} - {{ employee.get('role')?.value }}</span>
+              <button type="button" class="btn btn-link btn-sm remove-employee-btn" (click)="removeEmployee(i)">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="form-card">
+          <div class="form-section-title">Project Progress</div>
+          <div class="form-group">
+            <label for="milestones">Milestones</label>
+            <textarea class="form-control" id="milestones" formControlName="milestones"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="progress">Progress (%)</label>
+            <input type="number" class="form-control" id="progress" formControlName="progress">
+          </div>
+          <div class="form-group">
+            <label for="deadline">Deadline <span class="text-star">*</span></label>
+            <input type="date" class="form-control" id="deadline" formControlName="deadline">
+            <small *ngIf="projectForm.get('deadline')?.invalid && (projectForm.get('deadline')?.dirty || projectForm.get('deadline')?.touched)" class="text-danger">Deadline is required</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary" [disabled]="!projectForm.valid" (click)="createProject()">Create Project</button>
+  </form>
+</div>
+
+<div class="modal" tabindex="-1" [class.show]="isModalOpen" [ngStyle]="{'display': isModalOpen ? 'block' : 'none'}">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Employee</h5>
+        <button type="button" class="close" (click)="closeAddEmployeeModal()">&times;</button>
+      </div>
+      <div class="modal-body" [formGroup]="newEmployee">
+        <div class="form-group">
+          <label for="employeeName">Employee Name <span class="text-star">*</span></label>
+          <select class="form-control" id="employeeName" formControlName="name" (change)="onEmployeeSelect($event)">
+            <option *ngFor="let e of assignableEmployees" [value]="e.name">{{ e.name }}</option>
+          </select>
+          <small *ngIf="newEmployee.get('name')?.invalid && (newEmployee.get('name')?.dirty || newEmployee.get('name')?.touched)" class="text-danger">Employee Name is required</small>
+        </div>
+        <div class="form-group">
+          <label for="role">Role</label>
+          <input type="text" class="form-control" id="role" formControlName="role" readonly>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" (click)="closeAddEmployeeModal()">Cancel</button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="addEmployee()">Add</button>
+      </div>
+    </div>
+  </div>
+</div>

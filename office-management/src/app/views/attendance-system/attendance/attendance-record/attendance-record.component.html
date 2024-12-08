@@ -1,0 +1,30 @@
+<!-- By Thin Thin Oo 26/6/2024, For Attendance Records Component -->
+<div class="table-responsive">
+    <table class="table table-hover custom-table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Date</th>
+                <th>In</th>
+                <th>Out</th>
+                <th>CalculateAttendances</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let record of paginatedAttendanceList">
+                <td><strong>{{ record.username }}</strong></td>
+                <td>{{ record.role }}</td>
+                <td>{{ record.date }}</td>
+                <td>{{ record.checkInTime | date:'shortTime' }}</td>
+                <td>{{ record.checkOutTime | date:'shortTime' }}</td>
+                <td>{{ record.calculateAttendances }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Pagination Component -->
+    <app-pagination [totalItems]="attendanceList.length" [itemsPerPage]="itemsPerPage" [currentPage]="currentPage"
+        (pageChanged)="onPageChanged($event)">
+    </app-pagination>
+</div>

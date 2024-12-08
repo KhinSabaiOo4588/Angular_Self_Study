@@ -1,0 +1,386 @@
+:root {
+    font-size: 16px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.active-status,
+.inactive-status {
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 15px;
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    font-size: 0.875rem;
+    /* 14px */
+}
+
+.active-status {
+    background-color: #24c56c8c;
+    border: 1px solid #24c56c8c;
+}
+
+.inactive-status {
+    background-color: #dc35468c;
+    border: 1px solid #dc354657;
+}
+
+
+.bi-color {
+   background-color: #fff;
+    color : #dc3545;
+    /* border-color: #dc3545; */
+}
+
+.bi-color:hover {
+    color: #050505;
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+.bi-pencil,
+.bi-trash {
+    cursor: pointer;
+    margin-right: 10px;
+    border: 1px solid transparent;
+    padding: 5px;
+    transform: translateY(-2px);
+    border-radius: 5px;
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.bi-trash:hover {
+    color: #333;
+    background-color: #bfeedb;
+    border-color: #ced4da;
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.department {
+
+    overflow: hidden;
+}
+
+.custom-table {
+    width: 98%;
+    margin: 10px auto;
+    margin-left: 12px;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.custom-table thead th {
+    background: #e0efe9;
+    padding: 1.5rem;
+
+}
+
+.custom-table tbody tr {
+    background: #fff;
+    border: 10px solid rgba(5, 241, 123, 0.125);
+    border-radius: 0.25rem;
+
+}
+
+
+.custom-select-box {
+    background-color: #e0efe9;
+    appearance: auto;
+    /* border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 0.375rem 0.75rem;
+    width: 45px;
+    height: 44px; */
+}
+
+th,
+td {
+    padding: 0.8rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.custom-table tbody tr:hover {
+    background-color: #e0efe9;
+}
+
+.custom-select-box:focus {
+    border-color: #e0efe9;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.d-flex.pr-3.justify-content-between.align-items-center.mb-3 {
+    background-color: #f7f7f7;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+
+
+.plus-btn,
+.input-group-prepend .input-group-text {
+    background-color: #e0efe9;
+    height: 40px;
+    font-size: 1rem;
+}
+
+.add-department-btn {
+    background-color: #e0efe9;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .d-flex.pr-3.justify-content-between.align-items-center.mb-3 {
+        flex-direction: column;
+    }
+
+    .d-flex.pr-3.justify-content-between.align-items-center.mb-3>div {
+        margin-bottom: 10px;
+    }
+
+    .add-department-btn,
+    .input-group {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .d-flex.pr-3.justify-content-between.align-items-center.mb-3 label,
+    .d-flex.pr-3.justify-content-between.align-items-center.mb-3 select,
+    .d-flex.pr-3.justify-content-between.align-items-center.mb-3 span,
+    .d-flex.pr-3.justify-content-between.align-items-center.mb-3 button,
+    .d-flex.pr-3.justify-content-between.align-items-center.mb-3 input {
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .table-header th,
+    .table-hover tbody td {
+        padding: 0.5rem;
+    }
+
+    th {
+        background: #e0efe9;
+    }
+}
+
+
+
+
+
+
+
+
+
+.container-fluid {
+    padding: 0;
+}
+
+.sidebar {
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-bottom: 30px;
+}
+
+.nav-link.active {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.main-content {
+    padding: 20px;
+}
+
+.sidebar-right {
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top: 15px;
+    padding-top: 20px;
+    /* padding: 20px; */
+}
+
+.sidebar-right .activity,
+.sidebar-right .details-day {
+    margin-bottom: 20px;
+}
+
+.activity {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.sidebar-right i {
+    font-size: bold;
+}
+
+.profile-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+}
+
+.profile-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.profile-name {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.list-group-item {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.tab {
+    cursor: pointer;
+}
+
+.tab.underline {
+    text-decoration: underline;
+    color: #54b9b8;
+    text-underline-offset: 5px;
+}
+
+.active {}
+
+
+.create-project-form {
+    margin-bottom: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-card {
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+.form-section-title {
+    margin-bottom: 20px;
+    font-size: 1.25em;
+    font-weight: bold;
+    border-bottom: 2px solid #54B9B8;
+    padding-bottom: 5px;
+}
+
+.form-control,
+.form-check-input {
+    border-radius: 5px;
+}
+
+.form-control {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-danger {
+    border-radius: 5px;
+    border: none;
+    padding: 10px 20px;
+}
+
+.btn-primary {
+    background-color: #54B9B8;
+}
+
+.btn-primary:hover {
+    background-color: #81d4fa;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.add-employee-btn {
+    padding: 5px 10px;
+}
+
+.btn-create {
+    margin-bottom: 10px;
+}
+
+.modal-sm {
+    max-width: 300px;
+}
+
+.assigned-employees {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.assigned-employee {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    width: 30%;
+}
+
+.assigned-employee span {
+    margin-right: 10px;
+}
+
+.remove-employee-btn {
+    color: #dc3545;
+}
+
+.text-danger {
+    font-size: 12px;
+    color: red;
+    font-style: italic;
+}
+
+.text-star {
+    color: red;
+}

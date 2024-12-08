@@ -1,0 +1,23 @@
+<div class="container-fluid full-height bg-white">
+    <div class="profile-bar">
+        <div class="d-flex">
+            <h3 class="tab" [class.underline]="viewStatus == 'book'" [class.active]="viewStatus == 'book'"
+                (click)="viewCalendar('book')">
+                Booking
+            </h3>
+            <h3 class="tab mx-4" [class.active]="viewStatus == 'resource'" [class.underline]="viewStatus == 'resource'"
+                (click)="viewCalendar('resource')">
+                Resource
+            </h3>
+        </div>
+    </div>
+    <div class="row full-height m-2" *ngIf="viewStatus == 'book'">
+
+        <booking-list></booking-list>
+
+        <!-- </div> -->
+    </div>
+    <div class="row full-height m-2" *ngIf="viewStatus == 'resource'">
+        <resource-list></resource-list>
+    </div>
+</div>

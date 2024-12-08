@@ -1,0 +1,342 @@
+<!-- myo thu aung -->
+<div class="bg-white p-3">
+  <div class="form-card">
+    <form [formGroup]="meetingForm" (ngSubmit)="updateMeeting()">
+      <div class="form-section-title">
+        {{ isUpdate ? "Update Meeting" : "Meeting Details" }}
+      </div>
+      <div class="form-group">
+        <label for="meetingName"
+          ><span class="text-star">{{ isUpdate ? "" : "" }}</span
+          >Meeting Name</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="meetingName"
+          [readonly]="!isUpdate"
+          formControlName="meetingName"
+        />
+        <span
+          *ngIf="
+            meetingForm.get('meetingName')?.touched &&
+            meetingForm.get('meetingName')?.invalid
+          "
+          class="text-danger"
+          >Required meeting name*</span
+        >
+      </div>
+      <div class="form-row">
+        <div class="col-md-6">
+          <label for="startDate"
+            ><span class="text-star">{{ isUpdate ? "" : "" }}</span
+            >Start Date</label
+          >
+          <input
+            type="date"
+            class="form-control"
+            id="startDate"
+            formControlName="startDate"
+            [readonly]="!isUpdate"
+          />
+          <span
+            *ngIf="
+              meetingForm.get('startDate')?.touched &&
+              meetingForm.get('startDate')?.invalid
+            "
+            class="text-danger"
+            >Required start-date*</span
+          >
+        </div>
+        <div class="col-md-6">
+          <label for="endDate"
+            ><span class="text-star">{{ isUpdate ? "" : "" }}</span
+            >End Date</label
+          >
+          <input
+            type="date"
+            class="form-control"
+            id="endDate"
+            formControlName="endDate"
+            [readonly]="!isUpdate"
+          />
+          <span
+            *ngIf="
+              meetingForm.get('endDate')?.touched &&
+              meetingForm.get('endDate')?.invalid
+            "
+            class="text-danger"
+            >Required end-date*</span
+          >
+          <span *ngIf="endDateBeforeStartDate()" class="text-danger">
+            Must be greater than or equal with start-date*
+          </span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-6">
+          <label for="startTime"
+            ><span class="text-star">{{ isUpdate ? "" : "" }}</span
+            >Start Time</label
+          >
+          <input
+            type="time"
+            class="form-control"
+            id="startTime"
+            formControlName="startTime"
+            [readonly]="!isUpdate"
+          />
+          <span
+            *ngIf="
+              meetingForm.get('startTime')?.touched &&
+              meetingForm.get('startTime')?.invalid
+            "
+            class="text-danger"
+            >Required start-time*</span
+          >
+        </div>
+        <div class="col-md-6">
+          <label for="endTime"
+            ><span class="text-star">{{ isUpdate ? "" : "" }}</span
+            >End Time</label
+          >
+          <input
+            type="time"
+            class="form-control"
+            id="endTime"
+            formControlName="endTime"
+            [readonly]="!isUpdate"
+          />
+          <span
+            *ngIf="
+              meetingForm.get('endTime')?.touched &&
+              meetingForm.get('endTime')?.invalid
+            "
+            class="text-danger"
+            >Required end-time*</span
+          >
+          <span *ngIf="endTimeBeforeStartTime()" class="text-danger"
+            >Must be greater than with start-time*</span
+          >
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col-md-6">
+          <label for="seat"
+            ><span class="text-star">{{ isUpdate ? "" : "" }}</span
+            >Seat</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="seat"
+            formControlName="seat"
+            [readonly]="!isUpdate"
+          />
+          <span
+            *ngIf="
+              meetingForm.get('seat')?.touched &&
+              meetingForm.get('seat')?.invalid
+            "
+            class="text-danger"
+            >Required seat*</span
+          >
+        </div>
+        <div class="col-md-6">
+          <label for="room"
+            ><span class="text-star">{{ isUpdate ? "" : "" }}</span
+            >Room</label
+          >
+          <select class="form-control" id="room" formControlName="room">
+            <option value="" disabled selected>Select Room</option>
+            <option value="room1" [disabled]="!isUpdate">Room 1</option>
+            <option value="room2" [disabled]="!isUpdate">Room 2</option>
+            <option value="room3" [disabled]="!isUpdate">Room 3</option>
+            <option value="room4" [disabled]="!isUpdate">Room 4</option>
+          </select>
+          <span
+            *ngIf="
+              meetingForm.get('room')?.touched &&
+              meetingForm.get('room')?.invalid
+            "
+            class="text-danger"
+            >Choose your meeting room*</span
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Invited Participants</label>
+        <div class="select-employees" formArrayName="employees">
+          <div
+            *ngFor="let employee of allEmployees?.controls; let i = index"
+            class="invited-employee"
+            [formGroupName]="i"
+          >
+            <span>{{ employee.get("name")?.value }} </span>
+            <button
+              type="button"
+              class="btn btn-link btn-sm remove-employee-btn"
+              (click)="removeEmployee(i)"
+            >
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Repeat On Section -->
+      <label for="repeatOn">
+        <span class="text-star">{{ isUpdate ? "" : "" }}</span
+        >Repeat On</label
+      >
+      <div class="day-toggle">
+        <button
+          type="button"
+          (click)="toggleDay($event, 'Mon')"
+          [disabled]="!isUpdate"
+        >
+          Mon
+        </button>
+        <button
+          type="button"
+          (click)="toggleDay($event, 'Tue')"
+          [disabled]="!isUpdate"
+        >
+          Tue
+        </button>
+        <button
+          type="button"
+          (click)="toggleDay($event, 'Wed')"
+          [disabled]="!isUpdate"
+        >
+          Wed
+        </button>
+        <button
+          type="button"
+          (click)="toggleDay($event, 'Thu')"
+          [disabled]="!isUpdate"
+        >
+          Thu
+        </button>
+        <button
+          type="button"
+          (click)="toggleDay($event, 'Fri')"
+          [disabled]="!isUpdate"
+        >
+          Fri
+        </button>
+        <button
+          type="button"
+          (click)="toggleDay($event, 'Sat')"
+          [disabled]="!isUpdate"
+          [class.selected]="selectedDays.has('Sat')"
+        >
+          Sat
+        </button>
+        <button
+          type="button"
+          (click)="toggleDay($event, 'Sun')"
+          [disabled]="!isUpdate"
+        >
+          Sun
+        </button>
+        <button type="button" (click)="selectAllDays()" [disabled]="!isUpdate">
+          Select all
+        </button>
+      </div>
+
+      <div class="btn-group">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="openAddEmployeeModal()"
+          *ngIf="isUpdate"
+        >
+          <i class="fas fa-user-plus"></i> Update Participants
+        </button>
+        <button type="button" class="btn btn-secondary" *ngIf="isUpdate">
+          <i class="fas fa-link"></i> Get Link
+        </button>
+        <button type="submit" class="btn btn-primary" *ngIf="isUpdate">
+          <i class="fas fa-calendar-plus"></i> Update Meeting
+        </button>
+      </div>
+      <button
+        type="button"
+        class="btn btn-primary okbutton"
+        (click)="goToList()"
+        *ngIf="!isUpdate"
+      >
+        <h6>OK</h6>
+      </button>
+    </form>
+
+    <div
+      class="modal"
+      tabindex="-1"
+      [class.show]="isModalOpen"
+      [ngStyle]="{ display: isModalOpen ? 'block' : 'none' }"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add Employee</h5>
+            <button
+              type="button"
+              class="close"
+              (click)="closeAddEmployeeModal()"
+            >
+              &times;
+            </button>
+          </div>
+
+          <div class="modal-body" [formGroup]="newEmployee">
+            <div class="form-group">
+              <label for="employeeName"
+                >Employee Name <span class="text-star">*</span></label
+              >
+              <select
+                class="form-control"
+                id="employeeName"
+                formControlName="name"
+              >
+                <option *ngFor="let e of canChooseEmployees">
+                  {{ e.name }}
+                </option>
+              </select>
+              <small
+                *ngIf="
+                  newEmployee.get('name')?.invalid &&
+                  (newEmployee.get('name')?.dirty ||
+                    newEmployee.get('name')?.touched)
+                "
+                class="text-danger"
+                >Employee Name is required</small
+              >
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm"
+              (click)="closeAddEmployeeModal()"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary btn-sm"
+              (click)="addEmployee()"
+            >
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

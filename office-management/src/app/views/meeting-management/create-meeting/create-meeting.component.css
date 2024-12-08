@@ -1,0 +1,176 @@
+/* myo thu aung  */
+.form-card {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+  margin: 40px auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+}
+
+.form-section-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-control {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  width: 100%;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.col-md-6 {
+  flex: 1 1 calc(50% - 20px);
+}
+
+.day-toggle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.day-toggle button {
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 4px;
+  color: #333;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.day-toggle button:hover {
+  background-color: #d0d0d0;
+}
+
+.day-toggle button.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.day-toggle button:focus {
+  outline: none;
+}
+
+.btn-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.btn {
+  align-items: center;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 16px;
+  padding: 10px 20px;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+}
+
+.btn-primary {
+  background-color: #007bff;
+}
+
+.btn i {
+  margin-right: 8px;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.btn-secondary:hover {
+  background-color: #545b62;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.fas {
+  font-size: 18px;
+}
+
+.add-employee-btn {
+  padding: 5px 10px;
+}
+
+.select-employees {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.assigned-employee {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px;
+  width: 30%;
+}
+
+.assigned-employee span {
+  margin-right: 10px;
+}
+
+.remove-employee-btn {
+  color: #dc3545;
+  background-color: #f1f1f1;
+}
+
+.modal {
+  margin-left: 21%;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
+
+  .col-md-6 {
+    flex: 1 1 100%;
+  }
+}
+
+select {
+  appearance: auto;
+}

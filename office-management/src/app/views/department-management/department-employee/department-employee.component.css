@@ -1,0 +1,136 @@
+/* Global Settings */
+:root {
+  font-size: 16px;
+  /* Base font size */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  /* Set a consistent font-family */
+}
+
+.custom-select-box {
+  background-color: #e0efe9;
+  appearance: auto;
+}
+
+/* Department & Employee List */
+.department-item h5 {
+  font-size: 1.25rem;
+  /* 20px - Larger font size for department names */
+  font-weight: bold;
+  /* Ensure department names are bold */
+}
+
+.department-item ul {
+  list-style-type: none;
+  /* Remove default list styles */
+  padding: 0;
+  /* Remove default padding */
+}
+
+.department-item li {
+  padding: 10px 0;
+  /* Padding for each employee item */
+  border-bottom: 1px solid #ccc;
+  /* Separator between employees */
+}
+
+.employee-info {
+  font-size: 0.875rem;
+  /* 14px - Font size for employee details */
+  color: #666;
+  /* Adjust color for employee details */
+}
+
+/* Table Styling */
+.custom-table {
+  width: 98%;
+  margin: 10px auto;
+  margin-left: 12px;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 15px;
+  /* overflow: hidden; */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.custom-table thead th {
+  background: #e0efe9;
+  padding: 1.5rem;
+}
+
+.custom-table tbody tr {
+  background: #fff;
+  border: 10px solid rgba(5, 241, 123, 0.125);
+  border-radius: 0.25rem;
+}
+
+
+
+.custom-table tbody tr:hover {
+  background-color: #e0efe9;
+}
+
+/* Form and Button Styling */
+.form-control,
+.input-group-text {
+  font-size: 1rem;
+  /* 16px - Font size for form controls */
+}
+
+.btn {
+  font-size: 1rem;
+  /* 16px - Font size for buttons */
+}
+
+.add-department-btn {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  /* 16px - Font size for add department button */
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .department-item h5 {
+    font-size: 1rem;
+    /* 16px - Adjust font size for smaller screens */
+  }
+
+  .custom-table thead th {
+    padding: 0.75rem;
+    /* Adjusted padding for table headers */
+  }
+
+  .custom-table tbody td {
+    padding: 0.6rem;
+    /* Adjusted padding for table cells */
+  }
+}
+
+.plus-btn,
+.input-group-prepend .input-group-text {
+  background-color: #e0efe9;
+  height: 40px;
+  font-size: 1rem;
+}
+
+@media (max-width: 576px) {
+  .department-item h5 {
+    font-size: 0.875rem;
+    /* 14px - Further reduce font size for smaller screens */
+  }
+
+  .custom-table thead th {
+    padding: 0.5rem;
+    /* Further adjusted padding for table headers */
+  }
+
+  .custom-table tbody td {
+    padding: 0.5rem;
+    /* Further adjusted padding for table cells */
+  }
+}

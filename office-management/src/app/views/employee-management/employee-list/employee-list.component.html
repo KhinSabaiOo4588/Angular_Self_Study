@@ -1,0 +1,78 @@
+<!-- Author By @Khin Sabai Oo -->
+<div
+    class="card d-flex bg-white justify-content-between flex-wrap flex-md-nowrap rounded shadow pt-2 pb-2 mb-3 pe-2 border-bottom">
+    <h4 class="p-3">Employee List</h4>
+
+    <!-- Items Per Page Dropdown, Add Department Button, and Search Input -->
+    <div class="d-flex pr-3 pl-3 justify-content-between align-items-center mb-3 flex-wrap">
+        <!-- Items Per Page Dropdown -->
+        <div class="d-flex align-items-center mb-2 mb-md-0">
+            <label for="itemsPerPage" class="mb-0 mr-3">Display</label>
+            <select id="itemsPerPage" class="form-control form-control-sm custom-select-box mr-2"
+                (change)="onItemsPerPageChanged($event)">
+                <option *ngFor="let option of itemsPerPageOptions" [value]="option">{{ option }}</option>
+            </select>
+            <span>Employees</span>
+        </div>
+
+        <!-- Add Department Button and Search Input -->
+        <div class="d-flex align-items-center mb-2 mb-md-0">
+            <!-- Add Department Button with Large Plus Icon -->
+            <button type="button" class="btn text-dark btn-md rounded mr-2 " (click)="addEmployee()">
+                <i class="bi bi-plus-lg"></i>
+            </button>
+            <!-- Search Input with Lens Icon -->
+            <div class="input-group">
+
+                <input type="text" id="search" class="form-control form-control-md" placeholder="Search"
+                    (input)="onSearchQueryChanged($event)" aria-label="Search" aria-describedby="search-icon">
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <!-- Department Table -->
+        <table class="table table-hover custom-table">
+            <thead class="table-header">
+                <tr>
+                    <th>Name</th>
+                    <th>Job Position</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let employee of paginatedEmployees">
+                    <td (click)="viewEmployee(employee.id)">{{ employee.name }}</td>
+                    <td (click)="viewEmployee(employee.id)">{{employee.jobPosition}}</td>
+                    <td (click)="viewEmployee(employee.id)">{{ employee.email }}</td>
+                    <td (click)="viewEmployee(employee.id)">
+                        <span [ngClass]="{
+                            'active-status': employee.status === 'Active',
+                            'inactive-status': employee.status === 'Inactive',
+                            'on-leave-status': employee.status === 'On Leave',
+                            'terminated-status': employee.status === 'Terminated',
+                            'retired-status': employee.status === 'Retired',
+                            'probation-status': employee.status === 'Probation',
+                            'contract-status': employee.status === 'Contract',
+                            'resigned-status': employee.status === 'Resigned',
+                            'training-status': employee.status === 'Training',
+                            'suspended-status': employee.status === 'Suspended'
+                          }">
+                            {{ employee.status }}
+                        </span>
+                    </td>
+                    <td>
+                        <i class="bi bi-pencil" (click)="editEmployee(employee.id)"></i>
+                        <i class="bi bi-trash text-danger" (click)="deleteEmployee(employee.id)"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <app-pagination [totalItems]="employees.length" [itemsPerPage]="itemsPerPage" [currentPage]="currentPage"
+        (pageChanged)="onPageChanged($event)">
+    </app-pagination>
+</div>
+

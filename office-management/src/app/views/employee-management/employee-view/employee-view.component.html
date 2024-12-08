@@ -1,0 +1,97 @@
+<!-- Author By @Khin Sabai Oo -->
+<div class="create-project-form">
+  <form class="create-form">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-card">
+          <div class="form-section-title">Employee Details</div>
+          <div class="form-group">
+            <label for="profileImage">Profile Image</label>
+            <div class="image-upload">
+              <img [src]="isProfileImageEmpty() ? defaultImageUrl : employee.profileImage" alt="Profile Image"
+                class="profile-image" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" [(ngModel)]="employee.name" name="name" readonly>
+          </div>
+          <div class="form-group">
+            <label for="jobPosition">Job Position</label>
+            <input type="text" class="form-control" id="jobPosition" [(ngModel)]="employee.jobPosition"
+              name="jobPosition" readonly>
+          </div>
+          <div class="form-group">
+            <label for="department">Department</label>
+            <input type="text" class="form-control" id="department" [(ngModel)]="departmentName" name="departmentName"
+              readonly>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" [(ngModel)]="employee.email" name="email" readonly>
+          </div>
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select class="form-control" id="status" [(ngModel)]="employee.status" name="status" disabled>
+              <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-card">
+          <div class="form-section-title">Personal Information</div>
+          <div class="form-group">
+            <label for="workPhone">Work Phone</label>
+            <input type="tel" class="form-control" id="workPhone" [(ngModel)]="employee.workPhone" name="workPhone"
+              readonly>
+          </div>
+          <div class="form-group">
+            <label for="workMobile">Work Mobile</label>
+            <input type="tel" class="form-control" id="workMobile" [(ngModel)]="employee.workMobile" name="workMobile"
+              readonly>
+          </div>
+          <div class="form-group">
+            <label for="education">Education</label>
+            <select class="form-control" id="education" [(ngModel)]="employee.education" name="education" disabled>
+              <option value="Bachelor's">Bachelor's</option>
+              <option value="Master's">Master's</option>
+              <option value="PhD">PhD</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="salary">Salary</label>
+            <input type="number" class="form-control" id="salary" [(ngModel)]="employee.salary" name="salary" readonly>
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <textarea class="form-control" id="address" [(ngModel)]="employee.address" name="address"
+              readonly></textarea>
+          </div>
+          <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" class="form-control" id="dob" [(ngModel)]="employee.dob" name="dob" readonly>
+          </div>
+          <div class="form-group">
+            <label>Gender</label>
+            <div class="gender-options">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" [(ngModel)]="employee.gender" name="gender" value="male"
+                  disabled> Male
+              </label>
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" [(ngModel)]="employee.gender" name="gender" value="female"
+                  disabled> Female
+              </label>
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" [(ngModel)]="employee.gender" name="gender" value="other"
+                  disabled> Other
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="back()">Go Back List</button>
+  </form>
+</div>

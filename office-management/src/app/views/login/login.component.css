@@ -1,0 +1,272 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../../images/blob-scene-haikei.svg') no-repeat center center fixed;
+    background-size: cover;
+    filter: blur(3px);
+    z-index: -1;
+}
+
+.logo {
+    width: 70%;
+    padding: 20px;
+}
+
+.container-fluid {
+    position: relative;
+    z-index: 1;
+}
+
+.navbar {
+    padding: 20px 50px;
+}
+
+.navbar-brand {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.nav-link {
+    font-size: 17px;
+}
+
+.navbar-nav .nav-item {
+    margin-left: 15px;
+}
+
+.navbar-nav .nav-link {
+    padding-right: 15px;
+    padding-left: 15px;
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    left: 0;
+    background: #fff;
+    transition: width 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #fff;
+}
+
+.content-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+    justify-items: center;
+    padding: 20px;
+    flex-grow: 1;
+    margin-top: 70px;
+}
+
+.landing-page {
+    text-align: center;
+}
+
+h1 {
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.btn-light {
+    background-color: grey;
+    color: white;
+    border: none;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.842);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.text {
+    color: #888;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.form-control {
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #009bff;
+    border-radius: 0;
+    font-size: 16px;
+    color: #3f3f3f;
+}
+
+.form-control::placeholder {
+    color: #888;
+    font-size: 13px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-bottom: 2px solid #006bb3;
+}
+
+.input-with-icon {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
+
+.icon {
+    position: absolute;
+    top: 50%;
+    left: 0.75rem;
+    transform: translateY(-50%);
+    color: #aaa;
+}
+
+.border-bottom-only {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.short-line {
+    width: 50px;
+    margin: 10px auto 20px;
+    border: 2px solid #39aaf5;
+}
+
+.btn-primary {
+    background-color: grey;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background-color: grey;
+}
+
+.btn {
+    margin-bottom: 15px;
+}
+
+.eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 0.75rem;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #aaa;
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
+
+input[type="password"]::-webkit-clear-button,
+input[type="password"]::-webkit-reveal-button {
+    display: none;
+}
+
+/* Responsive CSS */
+@media (max-width: 991.98px) {
+    .navbar-nav {
+        display: flex;
+        flex-direction: row;
+        margin-left: auto;
+    }
+
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+
+    .nav-link {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .navbar-toggler {
+        display: block;
+    }
+
+    .collapse.navbar-collapse {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar-nav {
+        display: none;
+    }
+
+    .navbar-nav.show {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .nav-item {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar-brand {
+        font-size: 1rem;
+    }
+
+    .nav-link {
+        font-size: 0.875rem;
+    }
+
+    .nav-item {
+        margin-left: 0.25rem;
+        margin-right: 0.25rem;
+    }
+
+    .content-container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        margin-top: 100px;
+    }
+
+    .landing-page,
+    .login-form {
+        width: 100%;
+        max-width: 360px;
+    }
+}

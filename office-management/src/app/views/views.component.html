@@ -1,0 +1,127 @@
+<!-- @HanNaungSoe Sidebar and routing  -->
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+
+
+        <aside class="col-auto col-md-3 col-lg-3 bg-white rounded shadow">
+            <div class="d-flex flex-column pt-3 pb-3">
+                <div class="d-flex align-items-center mb-3 logo-container">
+                    <img src="https://www.blue-stone.net/web/image/res.company/1/logo?unique=01c8cfc" alt="Logo"
+                        class="img-fluid logo-img">
+                </div>
+                <!-- dashbord routing -->
+                <ul class="nav flex-column">
+                    <li class="nav-item p-3 lg-fs-5" routerLinkActive="active">
+                        <a [routerLink]="['dashboard']" class="nav-link d-flex align-items-center align-middle px-0">
+                            <span class="material-symbols-outlined pe-3">dashboard</span>
+                            <span class="ms-1 d-none d-sm-inline">Dashboard</span>
+                        </a>
+                    </li>
+                    <!-- Employee Routing -->
+                    <li class="nav-item p-3 lg-fs-5" [routerLinkActive]="'active'">
+                        <a [routerLink]="['employee']" class="nav-link d-flex align-items-center align-middle px-0">
+                            <span class="material-symbols-outlined pe-3">badge</span>
+                            <span class="ms-1 d-none d-sm-inline">Employees</span>
+                        </a>
+                    </li>
+
+                    <!-- Department Routing -->
+                    <li class="nav-item p-3 lg-fs-5" [routerLinkActive]="'active'">
+                        <a [routerLink]="['department']" class="nav-link d-flex align-items-center align-middle px-0">
+                            <span class="material-symbols-outlined pe-3">local_fire_department</span>
+                            <span class="ms-1 d-none d-sm-inline">Departments</span>
+                        </a>
+                    </li>
+
+                    <!-- Checking Routing -->
+                    <li class="nav-item p-3 lg-fs-5" [routerLinkActive]="'active'">
+                        <a [routerLink]="['project']" class="nav-link d-flex align-items-center align-middle px-0">
+                            <span class="material-symbols-outlined pe-3">work</span>
+                            <span class="ms-1 d-none d-sm-inline">Project</span>
+                        </a>
+                    </li>
+
+                    <!-- Meeting Routing -->
+                    <li class="nav-item p-3 lg-fs-5" [routerLinkActive]="'active'">
+                        <a [routerLink]="['meeting']" class="nav-link d-flex align-items-center align-middle px-0">
+                            <span class="material-symbols-outlined pe-3">meeting_room</span>
+                            <span class="ms-1 d-none d-sm-inline">Meeting</span>
+                        </a>
+                    </li>
+
+                    <!-- Resources Routing -->
+                    <li class="nav-item p-3 lg-fs-5" [routerLinkActive]="'active'">
+                        <a [routerLink]="['resource']" class="nav-link d-flex align-items-center align-middle px-0">
+                            <span class="material-symbols-outlined pe-3">things_to_do</span>
+                            <span class="ms-1 d-none d-sm-inline">Resource</span>
+                        </a>
+                    </li>
+
+                    <!-- Attendence Routing -->
+                    <li class="nav-item p-3 lg-fs-5" [routerLinkActive]="'active'">
+                        <a [routerLink]="['attendance']" class="nav-link d-flex align-items-center align-middle px-0">
+                            <span class="material-symbols-outlined pe-3">list</span>
+                            <span class="ms-1 d-none d-sm-inline">Attendance</span>
+                        </a>
+                    </li>
+
+                    <!-- About Us Routing -->
+                    <li class="nav-item p-3 lg-fs-5" [routerLinkActive]="'active'">
+                        <a [routerLink]="['aboutUs']" class="nav-link d-flex align-items-center align-middle px-0">
+                            <span class="material-symbols-outlined pe-3">groups</span>
+                            <span class="ms-1 d-none d-sm-inline">About Us</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Logout routing -->
+            <div class="mt-auto pt-3 pb-3 lg-fs-5">
+                <ul class="nav flex-column">
+                    <li class="nav-item p-3">
+                        <button (click)="logout()" class="nav-link d-flex align-items-center align-middle px-0">
+                            <span class="material-symbols-outlined pe-3">logout</span>
+                            <span class="ms-1 d-none d-sm-inline">Logout</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Toggle button for small screens -->
+
+
+        <main class="col-md-9  col-lg-9 px-md-4 mt-4">
+            <div class="d-flex bg-white justify-content-between 
+                        flex-wrap flex-md-nowrap  rounded shadow
+                         pt-2 pb-2 mb-3 pe-2 border-bottom" *ngIf="isBarShow == false">
+                <h3 class="ps-4 p-2">Welcome, {{userName}}</h3>
+
+                <div class="btn-toolbar mb-2 mb-md-0 me-2">
+                    <div class="d-flex ms-3 align-items-center">
+                        <div class="dropdown icon-container">
+                        <img 
+                         [src]="isProfileImageEmpty() ? defaultImageUrl : imgURL"
+                            alt="Profile" class="rounded-circle" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"
+                            width="40" height="40" >
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" [routerLink]="['profile']" routerLinkActive="router-link-active" >View Profile</a></li>
+                                <li><a class="dropdown-item d-flex align-items-center"(click)="logout()" >
+                                    <span class="material-symbols-outlined pe-3">
+                                        logout
+                                    </span>
+                                    Logout</a></li>
+                            </ul>
+                            <!-- (click)="viewProfile()"(click)="chatWithHim()" -->
+                            <!-- [routerLink]="['profile']" [routerLinkActive]="'active'" -->
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+
+            <router-outlet></router-outlet>
+        </main>
+
+    </div>
+</div>

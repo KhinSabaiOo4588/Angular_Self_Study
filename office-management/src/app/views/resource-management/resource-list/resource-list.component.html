@@ -1,0 +1,128 @@
+<div *ngIf="!resourceShow"
+    class="card d-flex bg-white justify-content-between flex-wrap flex-md-nowrap rounded shadow pt-2 pb-2 mb-3 pe-2 border-bottom">
+
+
+    <h4 class="p-3 ">Resources List</h4>
+
+    <!-- Items Per Resource Dropdown, Add Resource Button, and Search Input -->
+    <div class="d-flex pr-3 justify-content-between align-items-center mb-3 flex-wrap">
+        <!-- Items Per Page Dropdown -->
+        <div class="d-flex align-items-center mb-2 mb-md-0">
+            <label for="itemsPerPage" class="mb-0 mr-3">Display</label>
+            <select id="itemsPerPage" class="form-control form-control-sm custom-select-box mr-2"
+                (change)="onItemsPerPageChanged($event)">
+                <option *ngFor="let option of itemsPerPageOptions" [value]="option">{{ option }}</option>
+            </select>
+            <span>Resources</span>
+        </div>
+
+        <!-- Add Resource Button and Search Input -->
+        <div class="d-flex align-items-center mb-2 mb-md-0">
+
+
+            <button type="button" class="btn plus-btn text-dark btn-md rounded mr-2 " (click)="createResource()">
+                <span class="material-symbols-outlined">
+                    add
+                </span>
+            </button>
+            <!-- Search Input with Lens Icon -->
+            <div class="input-group">
+
+                <input type="text" id="search" class="form-control form-control-md" placeholder="Search"
+                    (input)="onSearchQueryChanged($event)" aria-label="Search" aria-describedby="search-icon">
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <!-- Resource Table -->
+        <table class="table table-hover custom-table">
+            <thead class="table-header">
+                <tr>
+                    <th>Resource name</th>
+                    <th>Location</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let resource of paginatedItems">
+                    <td (click)="routeToDetails(resource)">{{ resource.resourceName }}</td>
+                    <td (click)="routeToDetails(resource)">{{ resource.location }}</td>
+                    <td (click)="routeToDetails(resource)">{{ resource.type }}</td>
+                    <td>
+                        <span
+                            [ngClass]="{'active-status': resource.status === 'Avaliable', 'inactive-status': resource.status === 'Not Avaliable'}">{{
+                            resource.status }}</span>
+                    </td>
+                    <td>
+                        <i class="bi bi-pencil" (click)="updateResource(resource.id)"></i>
+                        <i class="bi bi-trash bi-color "
+                            (click)="openDeleteModal(deleteConfirmationModal, resource.id)"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+    </div>
+    <!-- Pagination Component at the bottom -->
+    <app-pagination [totalItems]="resources.length" [itemsPerPage]="itemsPerPage" [currentPage]="currentPage"
+        (pageChanged)="onPageChanged($event)">
+    </app-pagination>
+
+    <!-- delete-popup -->
+    <!-- Delete Confirmation Modal -->
+    <ng-template #deleteConfirmationModal let-modal>
+        <div class="modal-header">
+            <h5 class="modal-title">Delete Confirmation</h5>
+        </div>
+        <div class="modal-body">Are you sure you want to delete this?</div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="modal.dismiss('cancel click')">
+                Cancel
+            </button>
+            <button type="button" class="btn btn-danger" (click)="confirmDelete(); modal.close('Ok click')">
+                Delete
+            </button>
+        </div>
+    </ng-template>
+
+    <!-- end-delete-popup -->
+</div>
+
+
+<div class="create-project-form" *ngIf="resourceShow">
+    <form class="create-form">
+        <div class="row justify-content-center">
+            <div class="col-md-6 justify-content-center">
+                <div class="form-card ">
+                    <div class="form-section-title">Resource Details</div>
+                    <div class="form-group">
+                        <label for="projectName">Resource Name</label>
+                        <input type="text" class="form-control" id="projectName" [value]="resource.resourceName"
+                            readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Type</label>
+                        <input type="text" class="form-control" id="projectName" [value]="resource.type" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="startDate">Location</label>
+                        <input type="text" class="form-control" id="projectName" [value]="resource.location" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate">Status</label>
+                        <input type="text" class="form-control" id="projectName" [value]="resource.status" readonly>
+                    </div>
+                    <button type="button" class="btn mt-3 btn-primary" (click)="backToResources(resourceShow)">Back
+                        To
+                        Resource</button>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

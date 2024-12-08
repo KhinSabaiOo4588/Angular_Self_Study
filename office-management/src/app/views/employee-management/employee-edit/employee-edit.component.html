@@ -1,0 +1,209 @@
+<!-- Author By @Khin Sabai Oo -->
+<div class="create-project-form">
+  <form [formGroup]="employeeForm" (ngSubmit)="updateEmployee($event)" class="create-form">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-card">
+          <div class="form-section-title">Employee Details</div>
+          <div class="form-group">
+            <label for="profileImage">Profile Image <span class="text-star">*</span></label>
+            <div class="image-upload">
+              <img *ngIf="imageUrl" [src]="imageUrl" alt="Profile Image" class="profile-image" />
+              <input type="file" id="profileImage" (change)="onImageChange($event)" class="form-control-file"
+                style="display: none;">
+              <button type="button" class="choose-image-btn" (click)="triggerFileInput()">Choose Profile Image</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="name">Name <span class="text-star">*</span></label>
+            <input type="text" class="form-control" id="name" formControlName="name"
+              [value]="employeeForm.get('name')?.value | camelCase">
+            <div
+              *ngIf="employeeForm.get('name')?.invalid && (employeeForm.get('name')?.touched || employeeForm.get('name')?.dirty)"
+              class="text-danger">
+              <div *ngIf="employeeForm.get('name')?.errors?.['required']">Name is required.</div>
+              <div *ngIf="employeeForm.get('name')?.errors?.['pattern']">Must start with alphabets.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="jobPosition">Job Position <span class="text-star">*</span></label>
+            <input type="text" class="form-control" id="jobPosition" formControlName="jobPosition"
+              [value]="employeeForm.get('jobPosition')?.value | camelCase">
+            <div
+              *ngIf="employeeForm.get('jobPosition')?.invalid && (employeeForm.get('jobPosition')?.touched || employeeForm.get('jobPosition')?.dirty)"
+              class="text-danger">
+              <div *ngIf="employeeForm.get('jobPosition')?.errors?.['required']">Job Position is required.</div>
+              <div *ngIf="employeeForm.get('jobPosition')?.errors?.['pattern']">Only alphabets and spaces are allowed.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="department">Department <span class="text-star">*</span></label>
+            <select class="form-control" id="department" formControlName="departmentId">
+              <option value="" disabled>Select Department</option>
+              <option *ngFor="let dep of departments" [value]="dep.id">{{dep.name}}</option>
+            </select>
+            <div
+              *ngIf="employeeForm.get('departmentId')?.invalid && (employeeForm.get('departmentId')?.touched || employeeForm.get('departmentId')?.dirty)"
+              class="text-danger">
+              Department is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email <span class="text-star">*</span></label>
+            <input type="email" class="form-control" id="email" formControlName="email">
+            <div
+              *ngIf="employeeForm.get('email')?.invalid && (employeeForm.get('email')?.touched || employeeForm.get('email')?.dirty)"
+              class="text-danger">
+              <div *ngIf="employeeForm.get('email')?.errors?.['required']">Email is required.</div>
+              <div *ngIf="employeeForm.get('email')?.errors?.['email']">Enter a valid email.</div>
+              <div *ngIf="employeeForm.get('email')?.errors?.['emailTaken']">This email is already in use.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password <span class="text-star">*</span></label>
+            <div class="input-group">
+              <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="password"
+                formControlName="password">
+              <div class="input-group-append">
+                <button type="button" class="btn btn-primary" (click)="toggleShowPassword()">
+                  <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                </button>
+              </div>
+            </div>
+            <div
+              *ngIf="(employeeForm.get('password')?.touched || employeeForm.get('password')?.dirty) && employeeForm.get('password')?.invalid"
+              class="text-danger">
+              <div *ngIf="employeeForm.get('password')?.errors?.['pattern']">
+                Password must be at least 6 characters long, contain at least one letter and one number.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password <span class="text-star">*</span></label>
+            <div class="input-group">
+              <input [type]="showConfirmPassword ? 'text' : 'password'" class="form-control" id="confirmPassword"
+                formControlName="confirmPassword">
+              <div class="input-group-append">
+                <button type="button" class="btn btn-primary" (click)="toggleShowConfirmPassword()">
+                  <i [class]="showConfirmPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                </button>
+              </div>
+            </div>
+            <div
+              *ngIf="(employeeForm.get('confirmPassword')?.touched || employeeForm.get('confirmPassword')?.dirty) && employeeForm.get('confirmPassword')?.invalid"
+              class="text-danger">
+              <div *ngIf="employeeForm.get('confirmPassword')?.errors?.['mismatch']">
+                Passwords must match.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="status">Status <span class="text-star">*</span></label>
+            <select class="form-control" id="status" formControlName="status">
+              <option value="" disabled>Select Status</option>
+              <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+            </select>
+            <div
+              *ngIf="employeeForm.get('status')?.invalid && (employeeForm.get('status')?.touched || employeeForm.get('status')?.dirty)"
+              class="text-danger">
+              Status is required.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-card">
+          <div class="form-section-title">Contact Details</div>
+          <div class="form-group">
+            <label for="role">Role <span class="text-star">*</span></label>
+            <select class="form-control" id="role" formControlName="role">
+              <option value="" disabled>Select Role</option>
+              <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+            </select>
+            <div *ngIf="employeeForm.get('role')?.touched && employeeForm.get('role')?.invalid" class="text-danger">
+              Role is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="workPhone">Work Phone <span class="text-star">*</span></label>
+            <input type="tel" class="form-control" id="workPhone" formControlName="workPhone">
+            <div
+              *ngIf="employeeForm.get('workPhone')?.invalid && (employeeForm.get('workPhone')?.touched || employeeForm.get('workPhone')?.dirty)"
+              class="text-danger">
+              <div *ngIf="employeeForm.get('workPhone')?.errors?.['required']">Work Phone is required.</div>
+              <div *ngIf="employeeForm.get('workPhone')?.errors?.['pattern']">Enter a valid phone number.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="workMobile">Work Mobile <span class="text-star">*</span></label>
+            <input type="tel" class="form-control" id="workMobile" formControlName="workMobile">
+            <div
+              *ngIf="employeeForm.get('workMobile')?.invalid && (employeeForm.get('workMobile')?.touched || employeeForm.get('workMobile')?.dirty)"
+              class="text-danger">
+              <div *ngIf="employeeForm.get('workMobile')?.errors?.['required']">Work Mobile is required.</div>
+              <div *ngIf="employeeForm.get('workMobile')?.errors?.['pattern']">Enter a valid phone number.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="address">Address <span class="text-star">*</span></label>
+            <textarea class="form-control" id="address" formControlName="address"></textarea>
+            <div
+              *ngIf="employeeForm.get('address')?.invalid && (employeeForm.get('address')?.touched || employeeForm.get('address')?.dirty)"
+              class="text-danger">
+              Address is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="education">Education</label>
+            <select class="form-control" id="education" formControlName="education">
+              <option value="" disabled>Select Education Level</option>
+              <option *ngFor="let level of educationLevels" [value]="level">{{ level }}</option>
+            </select>
+            <div
+              *ngIf="employeeForm.get('education')?.invalid && (employeeForm.get('education')?.touched || employeeForm.get('education')?.dirty)"
+              class="text-danger">
+              Education is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="salary">Salary <span class="text-star">*</span></label>
+            <input type="text" class="form-control" id="salary" formControlName="salary" appCommaFormat>
+            <div
+              *ngIf="employeeForm.get('salary')?.invalid && (employeeForm.get('salary')?.touched || employeeForm.get('salary')?.dirty)"
+              class="text-danger">
+              <div *ngIf="employeeForm.get('salary')?.errors?.['min']">Salary must be a positive number.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="dob">Date of Birth <span class="text-star">*</span></label>
+            <input type="date" class="form-control" id="dob" formControlName="dob">
+            <div
+              *ngIf="employeeForm.get('dob')?.invalid && (employeeForm.get('dob')?.touched || employeeForm.get('dob')?.dirty)"
+              class="text-danger">
+              <div *ngIf="employeeForm.get('dob')?.errors?.['required']">Date of Birth is required.</div>
+              <div *ngIf="employeeForm.get('dob')?.errors?.['futureDate']">Date of Birth cannot be in the future.</div>
+              <div *ngIf="employeeForm.get('dob')?.errors?.['underAge']">Employee must be at least 10 years old.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Gender</label>
+            <div class="gender-options">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" formControlName="gender" value="male"> Male
+              </label>
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" formControlName="gender" value="female"> Female
+              </label>
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" formControlName="gender" value="other"> Other
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3" [disabled]="!employeeForm.valid">Update</button>
+    <button type="button" class="btn btn-secondary mt-3" (click)="back()">Cancle</button>
+  </form>
+</div>

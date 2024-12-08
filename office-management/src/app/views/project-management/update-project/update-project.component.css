@@ -1,0 +1,106 @@
+/* moeminoo */
+
+.update-project-form {
+  margin-bottom: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-card {
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+.form-section-title {
+  margin-bottom: 20px;
+  font-size: 1.25em;
+  font-weight: bold;
+  border-bottom: 2px solid #81d4fa;
+  padding-bottom: 5px;
+}
+
+.form-control,
+.form-check-input {
+  border-radius: 5px;
+}
+
+.form-control {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-danger {
+  border-radius: 5px;
+  border: none;
+  padding: 10px 20px;
+}
+
+.btn-primary {
+  background-color: #54B9B8;
+}
+
+.btn-primary:hover {
+  background-color: #81d4fa;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+.add-employee-btn {
+  padding: 5px 10px;
+}
+
+.modal-sm {
+  max-width: 300px;
+}
+
+.assigned-employees {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.assigned-employee {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px;
+  width: 30%;
+}
+
+.assigned-employee span {
+  margin-right: 10px;
+}
+
+.remove-employee-btn {
+  color: #dc3545;
+}
+
+.text-star{
+  color: red;
+}
+
+.text-danger {
+  font-size: 12px;
+  color: red;
+  font-style: italic;
+}

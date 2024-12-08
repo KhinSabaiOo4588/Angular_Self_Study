@@ -1,0 +1,56 @@
+<div class="create-project-form  mb-5 p-4 bg-white rounded shadow ">
+    <section id="about" class="my-4">
+        <div class="row align-items-center">
+            <div class="col-md-6 order-md-1 order-2">
+                <h1 >Our Comapny</h1>
+                <p class="philo text-justify">
+                    Blue Stone is an integrated IT service and solution provider with services ranging from IT consulting to systems integration. Our core focus is on providing excellent quality service to customers, paving way for long-term relationship. We endeavor to associate and work closely with them to understand their needs and serve them better - we believe in nurturing our customers and growing alongside with them. 
+                </p>
+            </div>
+            <div class="col-md-6 order-md-2 order-1">
+                <img src="coverpage.png" alt="" class="img-fluid" />
+            </div>
+        </div>
+    </section>
+
+    <section id="vision" class="py-2 bg-light text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 my-3">
+                    <h2 >Our Journey as Full Stack Developer OJT Team</h2>
+                    <p class="text-justify">
+                        As a team of Full Stack Developer OJT members, we have successfully completed a rigorous 6-month journey of learning and growth. Throughout this period, we have diligently honed our skills in various facets of software development, from frontend technologies to backend systems. Our journey has been marked by collaborative efforts, continuous learning, and overcoming challenges, all aimed at delivering impactful solutions.
+                    </p>
+                </div>
+                <div class="col-md-12 my-3">
+                    <p class="text-justify">
+                        Today, we proudly present the outcomes of our journey to our senior leadership and manager. With five dedicated team members, we have demonstrated our capability to innovate, adapt, and deliver high-quality results. This journey has not only enriched our technical expertise but also fostered a strong sense of camaraderie and professionalism within our team. We are excited to leverage our newfound skills and experiences for future endeavors.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="py-2">
+        <div class="container text-center">
+            <h2 >Meet Our Team</h2>
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 team-member my-2" *ngFor="let member of teamMembers">
+                    <img src="{{member.image}}" alt="employee-image" class="team-img rounded-circle mb-3">
+                    <h3>{{member.name}}</h3>
+                    <p>{{member.description}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center">
+        <div>
+            <a href="" class="mx-2 "><i class="bi bi-facebook icon "></i></a>
+            <a href="" class="mx-2"><i class="bi bi-twitter icon"></i></a>
+            <a href="" class="mx-2"><i class="bi bi-instagram icon"></i></a>
+            <a href="" class="mx-2"><i class="bi bi-linkedin icon"></i></a>
+        </div>
+        <p class="mt-1">Designed and developed by Full Stack Developer(OJT) ©️ 2024</p>
+    </footer>
+</div>

@@ -1,0 +1,58 @@
+<div class="create-project-form">
+    <form [formGroup]="bookingForm" class="create-form" (ngSubmit)="onSubmit()">
+        <div class="row justify-content-center">
+            <div class="col-md-6 justify-content-center">
+                <div class="form-card ">
+                    <div class="form-section-title">Booking Details</div>
+                    <div class="form-group">
+                        <label for="projectName">Resource Name</label>
+                        <select class="form-control" formControlName="resourceId">
+                            <option value="">Select Resource</option>
+                            <option *ngFor="let r of resources" [value]="r.id">{{ r.resourceName }}</option>
+                        </select>
+                        <span *ngIf="bookingForm.get('resourceId')?.touched && bookingForm.get('resourceId')?.invalid" class="text-danger">Required
+                            Resource Name*</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Employee Name</label>
+                        <select class="form-control" formControlName="empId">
+                            <option value="">Select Employee</option>
+                            <option *ngFor="let t of employees" [value]="t.id">{{ t.name }}</option>
+                        </select>
+                        <span *ngIf="bookingForm.get('empId')?.touched && bookingForm.get('empId')?.invalid" class="text-danger">Required
+                            Employee*</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" class="form-control" formControlName="date">
+                        <span *ngIf="bookingForm.get('date')?.touched && bookingForm.get('date')?.invalid"
+                            class="text-danger">Required Date*</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Start Time</label>
+                        <input type="time" class="form-control" formControlName="startTime" />
+                        <span *ngIf="bookingForm.get('startTime')?.touched && bookingForm.get('startTime')?.invalid"
+                            class="text-danger">Required start-time*</span>
+                    </div>
+                    <div class="form-group">
+                        <label>End Time</label>
+                        <input type="time" class="form-control" formControlName="endTime" />
+                        <span *ngIf="bookingForm.get('endTime')?.touched && bookingForm.get('endTime')?.invalid"
+                            class="text-danger">Required End-time*</span>
+                    </div>
+                    <div class="form-group d-flex justify-content-between">
+                        <button type="submit" class="btn mt-3 btn-primary " [disabled]="bookingForm.invalid">Create
+                            Booking</button>
+
+                        <button type="button" class="btn mt-3 btn-primary" (click)="goBack()">Cancel</button>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </form>
+</div>

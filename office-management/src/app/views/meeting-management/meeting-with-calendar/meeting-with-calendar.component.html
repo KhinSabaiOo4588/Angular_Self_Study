@@ -1,0 +1,54 @@
+<!-- myo thu aung -->
+<div class="container-fluid full-height bg-white">
+  <div class="profile-bar">
+    <div class="d-flex">
+      <h3
+        class="tab"
+        [class.underline]="viewStatus == 'calendar'"
+        [class.active]="viewStatus == 'calendar'"
+        (click)="viewCalendar('calendar')"
+      >
+        Calendar
+      </h3>
+      <h3
+        class="tab mx-4"
+        [class.active]="viewStatus == 'list'"
+        [class.underline]="viewStatus == 'list'"
+        (click)="viewCalendar('list')"
+      >
+        Details
+      </h3>
+    </div>
+  </div>
+  <div class="row full-height m-2" *ngIf="viewStatus == 'calendar'">
+    <div class="col-md-9 main-content">
+      <full-calendar
+        defaultView="dayGridMonth"
+        [options]="calendarOptions"
+      ></full-calendar>
+    </div>
+
+    <div class="col-md-3 sidebar-right">
+      <button
+        class="btn btn-primary w-100 mb-4"
+        [routerLink]="['/home/meeting/create-meeting']"
+      >
+        <i class="bi bi-plus icon-large mt-2"></i> Request Meeting
+      </button>
+
+      <div class="activity mb-3">
+        <h5 class="mb-2">Today Meetings</h5>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let meeting of todayMeetings">
+            {{ meeting.formattedStartTime }} to
+            {{ meeting.formattedEndTime }} ({{ meeting.meetingName }})
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- </div> -->
+  </div>
+  <div class="row full-height m-2" *ngIf="viewStatus == 'list'">
+    <meeting-list></meeting-list>
+  </div>
+</div>

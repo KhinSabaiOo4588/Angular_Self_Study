@@ -1,0 +1,78 @@
+<!-- By Thin Thin Oo 26/6/2024, For Add Department Component  -->
+<div class="create-department-form">
+  <div class="form-card">
+    <form [formGroup]="departmentForm" (ngSubmit)="addDepartment()" class="create-form">
+
+      <div class="row">
+        <div class="col-md-12">
+
+          <div class="form-section-title">Add Department</div>
+
+          <div class="form-group">
+            <label for="name">Department Name <span class="text-star">*</span></label>
+            <input type="text" class="form-control" id="name" formControlName="name"
+              [value]="departmentForm.get('name')?.value | camelCase">
+            <small
+              *ngIf="departmentForm.get('name')?.invalid && (departmentForm.get('name')?.dirty || departmentForm.get('name')?.touched)"
+              class="text-danger">Department Name is required</small>
+          </div>
+
+          <div class="form-group">
+            <label for="title">Title <span class="text-star">*</span></label>
+            <input type="text" class="form-control" id="title" formControlName="title"
+              [value]="departmentForm.get('title')?.value | camelCase">
+            <small
+              *ngIf="departmentForm.get('title')?.invalid && (departmentForm.get('title')?.dirty || departmentForm.get('title')?.touched)"
+              class="text-danger">Title is required</small>
+          </div>
+
+          <div class="form-group">
+            <label for="location">Location <span class="text-star">*</span></label>
+            <select class="form-control" id="location" formControlName="location">
+              <option value="">Select Location</option>
+              <option>Building A, Floor 3</option>
+              <option>Building B, Floor 1</option>
+              <option>Building C, Floor 2</option>
+            </select>
+            <small
+              *ngIf="departmentForm.get('location')?.invalid && (departmentForm.get('location')?.dirty || departmentForm.get('location')?.touched)"
+              class="text-danger">Location is required</small>
+          </div>
+
+          <div class="form-group">
+            <label for="status">Status <span class="text-star">*</span></label>
+            <select class="form-control" id="status" formControlName="status">
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+            <small
+              *ngIf="departmentForm.get('status')?.invalid && (departmentForm.get('status')?.dirty || departmentForm.get('status')?.touched)"
+              class="text-danger">Status is required</small>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description <span class="text-star">*</span></label>
+            <textarea class="form-control" id="description" formControlName="description"></textarea>
+            <small
+              *ngIf="departmentForm.get('description')?.invalid && (departmentForm.get('description')?.dirty || departmentForm.get('description')?.touched)"
+              class="text-danger">Description is required</small>
+          </div>
+
+          <div class="form-group">
+            <label for="canAccessData">Can Access Data</label>
+            <input type="checkbox" class="form-check-input" id="canAccessData" formControlName="canAccessData"
+              [value]="departmentForm.get('canAccessData')?.value | camelCase">
+          </div>
+
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="isAdding || !departmentForm.valid">Add
+        Department</button>
+
+      <button type="button" class="btn btn-primary" (click)="onCancel()">Cancel</button>
+
+    </form>
+    <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+  </div>
+</div>
