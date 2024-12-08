@@ -1,0 +1,5 @@
+/* Optional: For smoother fade-in/fade-out transitions */
+.transition-opacity {
+    transition: opacity 0.3s ease-in-out;
+  }
+  

@@ -1,0 +1,16 @@
+<div class="card input-card">
+    <h3 class="header">Input Component</h3>
+    <div class="body">
+      <label for="messageInput" class="dim">Message</label>
+      <input 
+        #input 
+        id="messageInput" 
+        type="text" 
+        class="input" 
+        placeholder="Enter your message">
+      <button 
+        (click)="addMessage(input)" 
+        class="btn btn-primary">Add Message</button>
+    </div>
+  </div>
+  

@@ -1,0 +1,29 @@
+<div class="weather-container">
+    <h1 class="title">Weather Application</h1>
+  
+    <form (ngSubmit)="getWeather()">
+      <input 
+        type="text" 
+        name="cityName" 
+        placeholder="Enter city name" 
+        [(ngModel)]="city" 
+        required 
+        class="city-input" 
+      />
+      <button type="submit" [disabled]="!city">Get Weather</button>
+    </form>
+  
+    <!-- Display Weather Data -->
+    <div *ngIf="weatherData">
+      <h2>Weather in {{ city }}</h2>
+      <p><strong>Temperature:</strong> {{ weatherData.current_weather.temperature }}°C</p>
+      <p><strong>Wind Speed:</strong> {{ weatherData.current_weather.windspeed }} km/h</p>
+      <p><strong>Weather Condition:</strong> {{ weatherData.current_weather.weathercode }}</p>
+    </div>
+  
+    <!-- Error Message -->
+    <div *ngIf="!weatherData && city">
+      <p>No data found for '{{ city }}'. Try another city!</p>
+    </div>
+  </div>
+  

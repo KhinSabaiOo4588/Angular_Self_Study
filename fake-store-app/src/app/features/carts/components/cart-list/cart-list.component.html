@@ -1,0 +1,28 @@
+<div class="cart-list-container">
+    <h2>Cart List</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>User ID</th>
+          <th>Products</th>
+          <th>Total Items</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cart of carts; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ cart.userId }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let product of cart.products">
+                Product ID: {{ product.productId }} (Quantity: {{ product.quantity }})
+              </li>
+            </ul>
+          </td>
+          <td>{{ cart.products.length }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
