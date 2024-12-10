@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, Signal, signal } from '@angular/core';
 
 @Component({
   selector: 'app-counter',
@@ -8,6 +8,8 @@ import { Component, signal } from '@angular/core';
 export class CounterComponent {
 
   count = signal(0);
+
+  doubleCount: Signal<number> = computed(()=>this.count()*2);
 
   inc() {
     this.count.update(oldValue => oldValue + 1);
